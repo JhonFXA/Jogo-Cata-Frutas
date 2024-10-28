@@ -1,6 +1,9 @@
 package main;
 
 import javax.swing.*;
+
+import main.Menu;
+
 import java.io.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -8,6 +11,7 @@ import java.awt.event.ActionEvent;
 
 public class CriadorDeTerreno extends JPanel {
 	
+	private static final long serialVersionUID = 1L;
 	private JPanel painelForm;
 	private JTextField dimensaoInput;
 	private JTextField quantPedrasInput;
@@ -32,7 +36,7 @@ public class CriadorDeTerreno extends JPanel {
     // Construtor da classe
     public CriadorDeTerreno() {
      
-        painelForm = new JPanel(new GridLayout(12, 3, 10, 0)); 
+        painelForm = new JPanel(new GridLayout(12, 5, 7, 5)); 
         
         dimensaoInput = new JTextField();
         quantPedrasInput = new JTextField();
@@ -106,12 +110,23 @@ public class CriadorDeTerreno extends JPanel {
         
         
         JButton importarTerrenoBtn = new JButton("Importar Terreno");
+        importarTerrenoBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        
         JButton exportarTerrenoBtn = new JButton("Exportar Terreno");
+        exportarTerrenoBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        
         JButton testarTerrenoBtn = new JButton("Testar Terreno");
+        testarTerrenoBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        JButton voltarBtn = new JButton("Voltar");
+        voltarBtn.setBackground(new Color(204, 0, 51));
+        voltarBtn.setForeground(Color.WHITE);
+        voltarBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         painelBotoes.add(importarTerrenoBtn);
         painelBotoes.add(exportarTerrenoBtn);
         painelBotoes.add(testarTerrenoBtn);
+        painelBotoes.add(voltarBtn);
         
         importarTerrenoBtn.addActionListener(new ActionListener() {
         	@Override
@@ -168,8 +183,24 @@ public class CriadorDeTerreno extends JPanel {
         			
         			ConfiguracaoJogo configuracaoJogo = new ConfiguracaoJogo(dimensao, quantDePedras, chanceBichada, capacidadeMochila, maracujasNoJogo, maracujasNoChao, laranjeirasNoJogo, laranjasNoChao, abacateirasNoJogo, abacatesNoChao, coqueirosNoJogo, cocosNoChao, aceroleirasNoJogo, acerolasNoChao, amoreirasNoJogo, amorasNoChao, goiabeirasNoJogo, goiabasNoChao);
         			
-        			new Jogo(configuracaoJogo);
+        			new Floresta(configuracaoJogo);
         		}
+        	}
+        });
+        
+        voltarBtn.addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+                JPanel parent = (JPanel) getParent();
+                parent.removeAll();
+
+                // Adiciona o painel do menu novamente
+                Menu menu = new Menu();
+                parent.add(menu);
+
+                // Atualiza a interface
+                parent.revalidate();
+                parent.repaint();
         	}
         });
 

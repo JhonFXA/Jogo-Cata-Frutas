@@ -1,5 +1,7 @@
 package main;
 
+import java.awt.Color;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
@@ -23,6 +25,7 @@ public abstract class Elemento {
 	}
 	
 	public abstract void getImagem();
+	
 	
 	public int getPosicaoX() {
 		return posicaoX;

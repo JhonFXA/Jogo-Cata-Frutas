@@ -1,5 +1,8 @@
 package arvores;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+
 import main.ConfiguracaoJogo;
 import main.ElementoEstatico;
 
@@ -8,4 +11,5 @@ public abstract class Arvore extends ElementoEstatico {
 		super(posicaoX, posicaoY, configuracao);
 		getImagem();
 	}
+
 }
